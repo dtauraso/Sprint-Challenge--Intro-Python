@@ -14,8 +14,9 @@ class GroundVehicle():
 # Subclass Motorcycle from GroundVehicle.
 #
 class Motorcycle(GroundVehicle):
-    def __init__(self, num_wheels=2):
-        super().__init__(num_wheels)
+    def __init__(self):
+        # apparaently if I set another default here It things it's another one
+        super().__init__(2)
     def drive(self):
         return "BRAAAP!!"
 # Make it so when you instantiate a Motorcycle, it automatically sets the number
