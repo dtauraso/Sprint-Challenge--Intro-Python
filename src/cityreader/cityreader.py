@@ -82,12 +82,40 @@ for c in cities:
 
 # TODO Get latitude and longitude values from the user
 
+def is_in(city, lat1, lon1, lat2, lon2):
+  
+  # print(type(city.lat) is float and type(city.lon) is float)
+
+  if(not(type(city.lat) is float and type(city.lon) is float)):
+    return False
+  # print(city, '|',lat1, lon1, lat2, lon2)
+  # lat1 lat2
+  # 45 <= 42.333
+  max_lat = lat2
+  min_lat = lat1
+  if(lat1 > lat2):
+    max_lat = lat1
+    min_lat = lat2
+
+  pass_lat = float(min_lat) <= city.lat <= float(max_lat)
+  # print(pass_lat)
+  # lon1 lon2
+  max_lon = lon2
+  min_lon = lon1
+  if(lon1 > lon2):
+    max_lon = lon1
+    min_lon = lon2
+  pass_lon = float(min_lon) <= city.lon <= float(max_lon)
+  return pass_lat and pass_lon
+
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
 
+  # if(not(type(lat1) == 'float' and type(lon1) == 'float' and type(lat2) == 'float' and type(lon2) == 'float')):
+  #   return cities
+    # print(cities)
 
-  
   # within will hold the cities that fall within the specified region
-  within = []
+  within = [city for city in cities if is_in(city, lat1, lon1, lat2, lon2)]
 
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
